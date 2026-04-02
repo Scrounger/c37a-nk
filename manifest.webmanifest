@@ -1,7 +1,7 @@
 {
-    "name": "c37a-nk",
-    "short_name": "c37a-nk",
-    "description": "Dashboard für c37a-nk",
+    "name": "c37a Dashboard",
+    "short_name": "c37a Dashboard",
+    "description": "c37a Dashboard",
     "start_url": "./",
     "scope": "./",
     "display": "standalone",
