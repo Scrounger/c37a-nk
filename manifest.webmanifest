@@ -1,0 +1,19 @@
+{
+    "name": "c37a-nk",
+    "short_name": "c37a-nk",
+    "description": "Dashboard für c37a-nk",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1976d2",
+    "lang": "de-DE",
+    "icons": [
+        {
+            "src": "barChart.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
