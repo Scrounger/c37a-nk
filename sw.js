@@ -1,14 +1,42 @@
-const CACHE_NAME = 'c37a-nk-v1';
-const CORE_ASSETS = [
+const CACHE_NAME = 'c37a-nk-v2';
+const APP_SHELL_CACHE = [
     './',
     './index.html',
     './manifest.webmanifest',
     './barChart.svg'
 ];
 
+const isCacheableStaticAsset = (request, url) => {
+    if (request.method !== 'GET') {
+        return false;
+    }
+
+    if (url.origin !== self.location.origin) {
+        return false;
+    }
+
+    if (url.search) {
+        return false;
+    }
+
+    if (
+        url.pathname.startsWith('/src/') ||
+        url.pathname.startsWith('/node_modules/') ||
+        url.pathname.includes('/@vite/') ||
+        url.pathname.includes('/__vite') ||
+        url.pathname.endsWith('/sw.js')
+    ) {
+        return false;
+    }
+
+    return ['style', 'script', 'worker', 'font', 'image'].includes(request.destination);
+};
+
+const isNavigationRequest = (request) => request.mode === 'navigate';
+
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS))
+        caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL_CACHE))
     );
     self.skipWaiting();
 });
@@ -25,12 +53,16 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (event.request.method !== 'GET') {
+    const requestUrl = new URL(event.request.url);
+
+    if (isNavigationRequest(event.request)) {
+        event.respondWith(
+            fetch(event.request).catch(() => caches.match('./index.html'))
+        );
         return;
     }
 
-    const requestUrl = new URL(event.request.url);
-    if (requestUrl.origin !== self.location.origin) {
+    if (!isCacheableStaticAsset(event.request, requestUrl)) {
         return;
     }
 
@@ -40,20 +72,18 @@ self.addEventListener('fetch', (event) => {
                 return cachedResponse;
             }
 
-            return fetch(event.request)
-                .then((networkResponse) => {
-                    if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-                        return networkResponse;
-                    }
-
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(event.request, responseClone);
-                    });
-
+            return fetch(event.request).then((networkResponse) => {
+                if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
                     return networkResponse;
-                })
-                .catch(() => caches.match('./index.html'));
+                }
+
+                const responseClone = networkResponse.clone();
+                void caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, responseClone);
+                });
+
+                return networkResponse;
+            });
         })
     );
 });
