@@ -10,7 +10,7 @@
     "lang": "de-DE",
     "icons": [
         {
-            "src": "barChart.svg",
+            "src": "logo.svg",
             "sizes": "any",
             "type": "image/svg+xml",
             "purpose": "any maskable"

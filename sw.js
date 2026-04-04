@@ -3,7 +3,7 @@ const APP_SHELL_CACHE = [
     './',
     './index.html',
     './manifest.webmanifest',
-    './barChart.svg'
+    './logo.svg'
 ];
 
 const isCacheableStaticAsset = (request, url) => {

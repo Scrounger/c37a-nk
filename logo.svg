@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="logoTitle logoDesc">
+	<title id="logoTitle">BT Dashboard Logo</title>
+	<desc id="logoDesc">Modernes flaches App-Logo mit farbigem Hintergrund, Haussymbol, Balkendiagramm und dezenten Initialen BT.</desc>
+	<defs>
+		<linearGradient id="bg" x1="32" y1="24" x2="224" y2="232" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#1B7ED8" />
+			<stop offset="1" stop-color="#1257A6" />
+		</linearGradient>
+		<linearGradient id="highlight" x1="58" y1="38" x2="166" y2="132" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.12" />
+			<stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+		</linearGradient>
+		<linearGradient id="houseFill" x1="78" y1="76" x2="178" y2="180" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#FFFFFF" />
+			<stop offset="1" stop-color="#EAF4FF" />
+		</linearGradient>
+		<linearGradient id="chartA" x1="0" y1="112" x2="0" y2="176" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#4FC3F7" />
+			<stop offset="1" stop-color="#29B6F6" />
+		</linearGradient>
+		<linearGradient id="chartB" x1="0" y1="100" x2="0" y2="176" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#80CBC4" />
+			<stop offset="1" stop-color="#26A69A" />
+		</linearGradient>
+	</defs>
+
+	<rect x="16" y="16" width="224" height="224" rx="52" fill="url(#bg)" />
+	<rect x="16" y="16" width="224" height="224" rx="52" fill="url(#highlight)" />
+	<rect x="18" y="18" width="220" height="220" rx="50" fill="none" stroke="#EAF4FF" stroke-opacity="0.18" stroke-width="2" />
+
+	<g>
+		<path
+			d="M57 116 128 61l71 55v63c0 9.39-7.61 17-17 17H74c-9.39 0-17-7.61-17-17Z"
+			fill="url(#houseFill)"
+		/>
+		<path
+			d="M48 120 128 58l80 62"
+			fill="none"
+			stroke="#D9EEFF"
+			stroke-width="12"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		/>
+
+		<rect x="89" y="136" width="16" height="40" rx="5" fill="rgb(25,118,210)" />
+		<rect x="120" y="114" width="16" height="62" rx="5" fill="rgb(255,180,34)" />
+		<rect x="151" y="96" width="16" height="80" rx="5" fill="rgb(250,79,88)" />
+		<rect x="84" y="176" width="88" height="8" rx="4" fill="#9BBFD8" />
+
+	</g>
+</svg>
